@@ -4,7 +4,7 @@ Daniel Fried, Armen Aghajanyan, Jessy Lin, Sida Wang, Eric Wallace, Freda Shi, R
 
 This repository hosts example code showing how to use the model using HuggingFace's `transformers` library.
 
-See [our project site](https://sites.google.com/view/incoder-code-models) for more, or [our paper](paper/InCoder-4-12-22.pdf), or [examples](https://sites.google.com/view/incoder-code-models/home/examples).
+See [our project site](https://sites.google.com/view/incoder-code-models) for more information, or [our paper](paper/InCoder-4-12-22.pdf), or [examples](https://sites.google.com/view/incoder-code-models/home/examples).
 
 ## Requirements
 
