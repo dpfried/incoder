@@ -7,6 +7,13 @@ This repository hosts example code showing how to use the model using HuggingFac
 See [our project site](https://sites.google.com/view/incoder-code-models) for more information, or [our paper](paper/InCoder-4-12-22.pdf), or [examples](https://sites.google.com/view/incoder-code-models/home/examples).
 
 
+## Models
+
+You can obtain the models from HuggingFace's hub:
+
+- 6.7B parameter model: [facebook/incoder-6b](https://huggingface.co/facebook/incoder-6B)
+- 1.3B parameter model: [facebook/incoder-1b](https://huggingface.co/facebook/incoder-1B)
+
 ## Requirements
 
 `pytorch`, `tokenizers`, and `transformers``.
