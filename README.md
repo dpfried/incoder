@@ -30,6 +30,9 @@ See [our paper](paper/InCoder-4-12-22.pdf) for research details on the method, t
 
 See a demo of the 6.7B model on [HF Spaces](https://huggingface.co/spaces/facebook/incoder-demo).
 
+## License
+
+CC-BY-NC 4.0
 
 ## Credits
 
