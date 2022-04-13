@@ -1,6 +1,6 @@
 # InCoder: A Generative Model for Code Infilling and Synthesis
 
-Daniel Fried, Armen Aghajanyan, Jessy Lin, Sida Wang, Eric Wallace, Freda Shi, Ruiqi Zhong, Wen-tau Yih, Luke Zettlemoyer, and Mike Lewis
+Daniel Fried*, Armen Aghajanyan*, Jessy Lin, Sida Wang, Eric Wallace, Freda Shi, Ruiqi Zhong, Wen-tau Yih, Luke Zettlemoyer, and Mike Lewis
 
 This repository hosts example code showing how to use the model using HuggingFace's `transformers` library. Code to replicate the evaluation results in our paper (in Fairseq, which we used to train the model) is coming soon!
 
