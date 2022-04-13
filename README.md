@@ -6,6 +6,8 @@ This repository hosts example code showing how to use the model using HuggingFac
 
 See [our project site](https://sites.google.com/view/incoder-code-models) for more information, or [our paper](paper/InCoder-4-12-22.pdf), or [examples](https://sites.google.com/view/incoder-code-models/home/examples).
 
+Code to replicate the evaluation results in our paper (in Fairseq, which we used to train the model) is coming soon!
+
 ## Requirements
 
 `pytorch`, `tokenizers`, and `transformers``.
