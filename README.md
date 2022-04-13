@@ -16,7 +16,7 @@ You can obtain the models from HuggingFace's hub:
 
 ## Requirements
 
-`pytorch`, `tokenizers`, and `transformers``.
+`pytorch`, `tokenizers`, and `transformers`.
 Our model requires HF's tokenizers >= 0.12.1, due to changes in the pretokenizer. This version is close to release, but in the meantime you can install directly from source via pip.
 
 ```
