@@ -1,5 +1,6 @@
 from typing import List
 
+import torch
 import tokenizers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import json
@@ -8,7 +9,7 @@ if tokenizers_version < (0, 12, 1):
     print("warning: Your tokenizers version looks old and you will likely have formatting issues. We recommend installing tokenizers >= 0.12.1")
 
 # set BIG_MODEL to use the 6.7B parameter model
-BIG_MODEL = False
+BIG_MODEL = True
 
 # use a GPU
 CUDA = True
@@ -18,16 +19,30 @@ VERBOSE = False
 
 if BIG_MODEL:
     model_name = "facebook/incoder-6B"
+
+    # the arguments added below will load a half precision version of the model,
+    # which requires less RAM than loading the full float32 version.  this 
+    # should fit in ~16GB of RAM
+    # NOTE: half precision should *not* be used if you plan to fine-tune the
+    # model. You'll need full precision and a lot of GPU memory. We have not
+    # tested fine-tuning in `transformers` (the model was trained in fairseq)
+    kwargs = dict(
+        revision="float16", 
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=True,
+    )
 else:
     model_name = "facebook/incoder-1B"
+    kwargs = {}
 
 print("loading model")
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 print("loading complete")
 
 if CUDA:
+    # if you plan to fine-tune the model, you should not use half precision.
     model = model.half().cuda()
 
 # signals the start of a document
@@ -49,7 +64,8 @@ def generate(input: str, max_to_generate: int=128, temperature: float=0.2):
     max_length = max_to_generate + input_ids.flatten().size(0)
     if max_length > 2048:
         print("warning: max_length {} is greater than the context window {}".format(max_length, 2048))
-    output = model.generate(input_ids=input_ids, do_sample=True, top_p=0.95, temperature=temperature, max_length=max_length)
+    with torch.no_grad():
+        output = model.generate(input_ids=input_ids, do_sample=True, top_p=0.95, temperature=temperature, max_length=max_length)
     detok_hypo_str = tokenizer.decode(output.flatten())
     if detok_hypo_str.startswith(BOS):
         detok_hypo_str = detok_hypo_str[len(BOS):]
@@ -149,7 +165,7 @@ def code_to_docstring(max_to_generate=128, temperature=0.2):
     # this will sometimes generate extra functions! this can be avoided by truncating generation when e.g. a """ is produced
     example = '''\
 def count_words(filename):
-    """ [INSERT] """
+    """ <insert> """
     counts = Counter()
     with open(filename) as file:
         for line in file:
@@ -157,7 +173,7 @@ def count_words(filename):
             counts.update(words)
     return counts'''
 
-    parts = example.split("[INSERT]")
+    parts = example.split("<insert>")
     result = infill(parts, max_to_generate=max_to_generate, temperature=temperature)
     print("completed document:")
     print(result["text"])
@@ -165,11 +181,11 @@ def count_words(filename):
 
 def docstring_to_code(max_to_generate=128, temperature=0.2):
     example = '''\
-def [INSERT]
+def <insert>
     """ Count the number of occurrences of each word in the file. """
-    [INSERT]
+    <insert>
 <|/ file |>'''
-    parts = example.split("[INSERT]")
+    parts = example.split("<insert>")
     result = infill(parts, max_to_generate=max_to_generate, temperature=temperature)
     print("completed document:")
     print(result["text"])
