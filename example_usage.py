@@ -9,7 +9,7 @@ if tokenizers_version < (0, 12, 1):
     print("warning: Your tokenizers version looks old and you will likely have formatting issues. We recommend installing tokenizers >= 0.12.1")
 
 # set BIG_MODEL to use the 6.7B parameter model
-BIG_MODEL = True
+BIG_MODEL = False
 
 # use a GPU
 CUDA = True
