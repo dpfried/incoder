@@ -17,12 +17,12 @@ You can obtain the models from HuggingFace's hub:
 ## Requirements
 
 `pytorch`, `tokenizers`, and `transformers`.
-Our model requires HF's tokenizers >= 0.12.1, due to changes in the pretokenizer. This version is close to release, but in the meantime you can install directly from source via pip.
+Our model requires HF's tokenizers >= 0.12.1, due to changes in the pretokenizer.
 
 ```
 pip install pytorch
-pip install git+https://github.com/huggingface/tokenizers
-pip install git+https://github.com/huggingface/transformers
+pip install 'tokenizers>=0.12'
+pip install transformers
 ```
 
 ## Usage
