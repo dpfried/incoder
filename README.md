@@ -20,7 +20,7 @@ You can obtain the models from HuggingFace's hub:
 Our model requires HF's tokenizers >= 0.12.1, due to changes in the pretokenizer.
 
 ```
-pip install pytorch
+pip install torch
 pip install 'tokenizers>=0.12'
 pip install transformers
 ```
