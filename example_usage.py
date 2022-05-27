@@ -26,11 +26,16 @@ if BIG_MODEL:
     # NOTE: half precision should *not* be used if you plan to fine-tune the
     # model. You'll need full precision and a lot of GPU memory. We have not
     # tested fine-tuning in `transformers` (the model was trained in fairseq)
-    kwargs = dict(
-        revision="float16", 
-        torch_dtype=torch.float16,
-        low_cpu_mem_usage=True,
-    )
+    if CUDA:
+        kwargs = dict(
+            revision="float16", 
+            torch_dtype=torch.float16,
+            low_cpu_mem_usage=True,
+        )
+    else:
+        kwargs = dict(
+            low_cpu_mem_usage=True,
+        )
 else:
     model_name = "facebook/incoder-1B"
     kwargs = {}
