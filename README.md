@@ -11,8 +11,8 @@ See [our project site](https://sites.google.com/view/incoder-code-models) for mo
 
 You can obtain the models from HuggingFace's hub:
 
-- 6.7B parameter model: [facebook/incoder-6b](https://huggingface.co/facebook/incoder-6B)
-- 1.3B parameter model: [facebook/incoder-1b](https://huggingface.co/facebook/incoder-1B)
+- 6.7B parameter model: [facebook/incoder-6B](https://huggingface.co/facebook/incoder-6B)
+- 1.3B parameter model: [facebook/incoder-1B](https://huggingface.co/facebook/incoder-1B)
 
 ## Tokenizer
 
