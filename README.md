@@ -14,6 +14,16 @@ You can obtain the models from HuggingFace's hub:
 - 6.7B parameter model: [facebook/incoder-6b](https://huggingface.co/facebook/incoder-6B)
 - 1.3B parameter model: [facebook/incoder-1b](https://huggingface.co/facebook/incoder-1B)
 
+## Tokenizer
+
+We use a custom tokenizer, which you can load using either `AutoTokenizer.from_pretrained("facebook/incoder-6B")` or `AutoTokenizer.from_pretrained("facebook/incoder-1B")` (the two tokenizers are identical).
+
+When calling `tokenizer.decode`, it's important to pass `clean_up_tokenization_spaces=False` to avoid removing spaces after punctuation. For example:
+
+`tokenizer.decode(tokenizer.encode("from ."), clean_up_tokenization_spaces=False)`
+
+(Note: encoding prepends the `<|endoftext|>` token, as this marks the start of a document to our model. This token can be removed from the decoded output by passing `skip_special_tokens=True` to `tokenizer.decode`.)
+
 ## Requirements
 
 `pytorch`, `tokenizers`, and `transformers`.
@@ -28,6 +38,7 @@ pip install transformers
 ## Usage
 
 See [example_usage.py](example_usage.py) for a demo script showing how to use the infilling capability of the model. Set BIG_MODEL = True in the script to use the 6.7B parameter model; the 1.3B will be used otherwise.
+
 
 ## Paper
 

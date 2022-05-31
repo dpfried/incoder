@@ -71,7 +71,8 @@ def generate(input: str, max_to_generate: int=128, temperature: float=0.2):
         print("warning: max_length {} is greater than the context window {}".format(max_length, 2048))
     with torch.no_grad():
         output = model.generate(input_ids=input_ids, do_sample=True, top_p=0.95, temperature=temperature, max_length=max_length)
-    detok_hypo_str = tokenizer.decode(output.flatten())
+    # pass clean_up_tokenization_spaces=False to avoid removing spaces before punctuation, e.g. "from ." -> "from."
+    detok_hypo_str = tokenizer.decode(output.flatten(), clean_up_tokenization_spaces=False)
     if detok_hypo_str.startswith(BOS):
         detok_hypo_str = detok_hypo_str[len(BOS):]
     return detok_hypo_str
