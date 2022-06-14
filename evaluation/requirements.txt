@@ -1,0 +1,4 @@
+torch==1.11.*
+tokenizers>=0.12.1
+transformers
+git+https://github.com/dpfried/human-eval
