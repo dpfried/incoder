@@ -16,7 +16,13 @@ You can obtain the models from HuggingFace's hub:
 
 ## Tokenizer
 
-We use a custom tokenizer, which you can load using either `AutoTokenizer.from_pretrained("facebook/incoder-6B")` or `AutoTokenizer.from_pretrained("facebook/incoder-1B")` (the two tokenizers are identical).
+We use a custom tokenizer, which you can load from either "facebook/incoder-1B" or "facebook/incoder-6B" (they are identical). The model was trained with padding on the left, using a `<pad>` token which has 1.
+
+```
+tokenizer = AutoTokenizer.from_pretrained("facebook/incoder-1B") # or "facebook/incoder-6B"
+tokenizer.pad_token = "<pad>"
+tokenizer.padding_side = "left"
+```
 
 When calling `tokenizer.decode`, it's important to pass `clean_up_tokenization_spaces=False` to avoid removing spaces after punctuation. For example:
 
@@ -38,6 +44,8 @@ pip install transformers
 ## Usage
 
 See [example_usage.py](example_usage.py) for a demo script showing how to use the infilling capability of the model. Set BIG_MODEL = True in the script to use the 6.7B parameter model; the 1.3B will be used otherwise.
+
+For an example of batched generation, see [example_batched_usage.py](example_batched_usage.py).
 
 
 ## Paper
