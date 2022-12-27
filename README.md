@@ -16,7 +16,7 @@ You can obtain the models from HuggingFace's hub:
 
 ## Tokenizer
 
-We use a custom tokenizer, which you can load from either "facebook/incoder-1B" or "facebook/incoder-6B" (they are identical). The model was trained with padding on the left, using a `<pad>` token which has 1.
+We use a custom tokenizer, which you can load from either "facebook/incoder-1B" or "facebook/incoder-6B" (they are identical). The model was trained with padding on the left-hand side of inputs, using a `<pad>` token which has ID 1.
 
 ```
 tokenizer = AutoTokenizer.from_pretrained("facebook/incoder-1B") # or "facebook/incoder-6B"
