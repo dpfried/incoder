@@ -57,7 +57,7 @@ See [our paper](https://arxiv.org/abs/2204.05999) for research details on the me
 
 ## Demo
 
-See a demo of the 6.7B model on [HF Spaces](https://huggingface.co/spaces/facebook/incoder-demo).
+See a demo of the 6.7B model on [HF Spaces](https://huggingface.co/spaces/facebook/incoder-demo). [currently not working, apologies!]
 
 ## License
 
